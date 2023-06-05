@@ -9,12 +9,10 @@ public class Reserva {
     private String fechaCheckIn;
     private String fechaCheckOut;
 
-    public Reserva(Cliente cliente, Hotel hotel, Habitacion habitacion, Paquete paquete,
-                   String fechaReserva, String fechaCheckIn, String fechaCheckOut) {
+    public Reserva(Cliente cliente, Hotel hotel, Habitacion habitacion, String fechaReserva, String fechaCheckIn, String fechaCheckOut) {
         this.cliente = cliente;
         this.hotel = hotel;
         this.habitacion = habitacion;
-        this.paquete = paquete;
         this.fechaReserva = fechaReserva;
         this.fechaCheckIn = fechaCheckIn;
         this.fechaCheckOut = fechaCheckOut;
@@ -47,5 +45,34 @@ public class Reserva {
     public String getFechaCheckOut() {
         return fechaCheckOut;
     }
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+	public void setHabitacion(Habitacion habitacion) {
+		this.habitacion = habitacion;
+	}
+
+	public void setPaquete(Paquete paquete) {
+		this.paquete = paquete;
+	}
+
+	public void setFechaReserva(String fechaReserva) {
+		this.fechaReserva = fechaReserva;
+	}
+
+	public void setFechaCheckIn(String fechaCheckIn) {
+		this.fechaCheckIn = fechaCheckIn;
+	}
+
+	public void setFechaCheckOut(String fechaCheckOut) {
+		this.fechaCheckOut = fechaCheckOut;
+	}
+    
 
 }

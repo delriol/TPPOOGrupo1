@@ -6,9 +6,8 @@ public class Habitacion {
     private boolean disponibilidad;
 
     // Constructor
-    public Habitacion(int numeroHabitacion, int capacidad) {
+    public Habitacion(int numeroHabitacion) {
         this.numeroHabitacion = numeroHabitacion;
-        this.capacidad = capacidad;
         this.disponibilidad = true;
     }
 

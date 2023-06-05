@@ -6,7 +6,7 @@ public class Paquete {
     private double precio;
 
     // Constructor
-    public Paquete(String nombre, String descripcion, double precio) {
+    public Paquete(String nombre) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;

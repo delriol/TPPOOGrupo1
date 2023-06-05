@@ -6,12 +6,12 @@ import java.util.List;
 public class Hotel {
     private String nombre;
     private String ubicacion;
-    private String categoria;
+    private int categoria;
     private int capacidadTotal;
     private List<Habitacion> habitaciones;
 
     // Constructor
-    public Hotel(String nombre, String ubicacion, String categoria, int capacidadTotal) {
+    public Hotel(String nombre, String ubicacion, int categoria, int capacidadTotal) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.categoria = categoria;
@@ -44,13 +44,13 @@ public class Hotel {
 
 
 
-	public String getCategoria() {
+	public int getCategoria() {
 		return categoria;
 	}
 
 
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(int categoria) {
 		this.categoria = categoria;
 	}
 
@@ -84,4 +84,17 @@ public class Hotel {
     public void agregarHabitacion(Habitacion habitacion) {
         habitaciones.add(habitacion);
     }
+
+
+    public Habitacion buscarHabitacionPorNumero(int numeroHabitacion) {
+        for (Habitacion habitacion : habitaciones) {
+            if (habitacion.getNumeroHabitacion() == numeroHabitacion) {
+                return habitacion;
+            }
+        }
+        return null; // Si no se encuentra la habitación, se devuelve null
+    }
+
+
+
 }
