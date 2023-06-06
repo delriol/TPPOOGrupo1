@@ -13,6 +13,8 @@ public class Cliente {
     private String cuentaMercadoPago;
 
     // Constructor
+	public Cliente() {}
+
     public Cliente(String nombre, String apellido, String domicilio, String DNI, String fechaNacimiento,
                    String datosTarjetaCredito, String email, String contrasena) {
         this.nombre = nombre;
@@ -125,7 +127,7 @@ public class Cliente {
 	}
 
 
-	// M�todos adicionales
+	// M�todos adicionales
     public void registrarCuentaBancaria(String cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
     }
@@ -133,4 +135,28 @@ public class Cliente {
     public void registrarCuentaMercadoPago(String cuentaMercadoPago) {
         this.cuentaMercadoPago = cuentaMercadoPago;
     }
+
+	public void registrar(String nombre, String apellido, String domicilio, String DNI, String fechaNacimiento,
+                      String datosTarjetaCredito, String email, String contrasena, String cuentaBancaria,
+                      String cuentaMercadoPago) {
+    	this.nombre = nombre;
+    	this.apellido = apellido;
+    	this.domicilio = domicilio;
+    	this.DNI = DNI;
+    	this.fechaNacimiento = fechaNacimiento;
+    	this.datosTarjetaCredito = datosTarjetaCredito;
+    	this.email = email;
+    	this.contrasena = contrasena;
+    	this.cuentaBancaria = cuentaBancaria;
+    	this.cuentaMercadoPago = cuentaMercadoPago;
+	}
+	public void iniciarSesion(String main, String contrasena){
+		if (this.email.equals(email) && this.contrasena.equals(contrasena)) {
+			System.out.println("Inicio de sesión exitoso.");
+		} else {
+			System.out.println("Error: Email o contraseña incorrectos.");
+		}
+	}
+
+	public void reservar() {}
 }
