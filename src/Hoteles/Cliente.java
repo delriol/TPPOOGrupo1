@@ -152,7 +152,7 @@ public class Cliente {
     	this.cuentaBancaria = cuentaBancaria;
     	this.cuentaMercadoPago = cuentaMercadoPago;
 	}
-	public void iniciarSesion(String main, String contrasena){
+	public void iniciarSesion(String email, String contrasena){
 		if (this.email.equals(email) && this.contrasena.equals(contrasena)) {
 			System.out.println("Inicio de sesión exitoso.");
 		} else {
