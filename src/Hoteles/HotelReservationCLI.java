@@ -1,4 +1,5 @@
 package Hoteles;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,53 +13,81 @@ public class HotelReservationCLI {
 
     public void start() {
         boolean exit = false;
-        
+        Cliente sesion_actual = null;
+        int opcion;
+        ArrayList<Cliente> baseclientes = new ArrayList<>();
+        System.out.print("\033c");
         while (!exit) {
-            System.out.println("Bienvenido a Hotelaltoque");
-            System.out.println("Selecciona una opción:");
-            System.out.println("1. Buscar hoteles");
-            System.out.println("2. Realizar reserva");
-            System.out.println("3. Consultas y reclamos");
-            System.out.println("0. Salir");
-            System.out.print("Opción: ");
-            
-            int opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer
-            
-            switch (opcion) {
-                case 1:
-                    buscarHoteles(scanner);
-                    break;
-                case 2:
-                    realizarReserva(scanner);
-                    break;
-                case 3:
-                    gestionarConsultas();
-                    break;
-                case 0:
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Opción inválida. Por favor, elige una opción válida.");
-                    break;
-            }
+            if (sesion_actual == null){
+                System.out.println("Bienvenido a Hotelaltoque");
+                System.out.println("Selecciona una opciï¿½n:");
+                System.out.println("1. Iniciar Sesion");
+                System.out.println("2. Registrarse");
+                System.out.println("0. Salir");
+                System.out.print("Opciï¿½n: ");
+                opcion = scanner.nextInt();
+                scanner.nextLine(); // Limpiar el buffer
+                switch (opcion) {
+                    case 1:
+                        sesion_actual = Cliente.iniciarSesion2(scanner,baseclientes);
+                        break;
+                    case 2:
+                    baseclientes.add(Cliente.registrar2(scanner));
+                        break;
+                    case 0:
+                        exit = true;
+                        break;
+                    default:
+                        System.out.println("Opciï¿½n invï¿½lida. Por favor, elige una opciï¿½n vï¿½lida.");
+                        break;
+                    }
+            }else{
+                System.out.println("Bienvenido a Hotelaltoque");
+                System.out.println("Selecciona una opciï¿½n:");
+                System.out.println("1. Buscar hoteles");
+                System.out.println("2. Realizar reserva");
+                System.out.println("3. Consultas y reclamos");
+                System.out.println("0. Salir");
+                System.out.print("Opciï¿½n: ");
+                
+                opcion = scanner.nextInt();
+                scanner.nextLine(); // Limpiar el buffer
+                
+                switch (opcion) {
+                    case 1:
+                        buscarHoteles(scanner);
+                        break;
+                    case 2:
+                        realizarReserva(scanner);
+                        break;
+                    case 3:
+                        gestionarConsultas();
+                        break;
+                    case 0:
+                        exit = true;
+                        break;
+                    default:
+                        System.out.println("Opciï¿½n invï¿½lida. Por favor, elige una opciï¿½n vï¿½lida.");
+                        break;
+                    }
+                }
         }
         
         scanner.close();
-        System.out.println("Gracias por utilizar Hotelaltoque. ¡Hasta luego!");
+        System.out.println("Gracias por utilizar Hotelaltoque. ï¿½Hasta luego!");
     }
     
     public void buscarHoteles(Scanner scanner) {
-        System.out.println("Búsqueda de hoteles");
-        System.out.print("Ingrese la categoría mínima: ");
+        System.out.println("Bï¿½squeda de hoteles");
+        System.out.print("Ingrese la categorï¿½a mï¿½nima: ");
         int categoriaMinima = scanner.nextInt();
-        System.out.print("Ingrese la capacidad mínima: ");
+        System.out.print("Ingrese la capacidad mï¿½nima: ");
         int capacidadMinima = scanner.nextInt();
 
         List<Hotel> hotelesEncontrados = SistemaReservas.buscarHoteles(categoriaMinima, capacidadMinima);
 
         if (hotelesEncontrados.isEmpty()) {
-            System.out.println("No se encontraron hoteles que cumplan los criterios de búsqueda.");
+            System.out.println("No se encontraron hoteles que cumplan los criterios de bï¿½squeda.");
         } else {
             System.out.println("Hoteles encontrados:");
             for (Hotel hotel : hotelesEncontrados) {
@@ -73,7 +102,7 @@ public class HotelReservationCLI {
         Cliente cliente = SistemaReservas.buscarCliente(nombreCliente);
 
         if (cliente == null) {
-            System.out.println("Cliente no encontrado. Regístrese antes de realizar una reserva.");
+            System.out.println("Cliente no encontrado. Regï¿½strese antes de realizar una reserva.");
             return;
         }
 
@@ -86,36 +115,36 @@ public class HotelReservationCLI {
             return;
         } 
         
-     // Lógica para seleccionar una habitación
+     // Lï¿½gica para seleccionar una habitaciï¿½n
         
-        System.out.print("Ingrese el número de habitación: ");
+        System.out.print("Ingrese el nï¿½mero de habitaciï¿½n: ");
         int numeroHabitacion = scanner.nextInt();
         scanner.nextLine(); // Limpiar el buffer del scanner
 
-        // Buscar la habitación por su número en el hotel correspondiente
+        // Buscar la habitaciï¿½n por su nï¿½mero en el hotel correspondiente
         Habitacion habitacion = hotel.buscarHabitacionPorNumero(numeroHabitacion);
 
-        // Verificar si la habitación existe y está disponible
+        // Verificar si la habitaciï¿½n existe y estï¿½ disponible
         if (habitacion == null) {
-            System.out.println("La habitación no existe en este hotel. Intente nuevamente.");
+            System.out.println("La habitaciï¿½n no existe en este hotel. Intente nuevamente.");
             return;
         }
 
         if (!habitacion.isDisponibilidad()) {
-            System.out.println("La habitación seleccionada no está disponible. Intente nuevamente.");
+            System.out.println("La habitaciï¿½n seleccionada no estï¿½ disponible. Intente nuevamente.");
             return;
         }
 
-        // Verificar si la capacidad de la habitación es suficiente
+        // Verificar si la capacidad de la habitaciï¿½n es suficiente
         System.out.print("Ingrese la cantidad de personas: ");
         int cantidadPersonas = scanner.nextInt();
         scanner.nextLine(); // Limpiar el buffer del scanner
         if (habitacion.getCapacidad() < cantidadPersonas) {
-            System.out.println("La habitación seleccionada no tiene suficiente capacidad. Intente nuevamente.");
+            System.out.println("La habitaciï¿½n seleccionada no tiene suficiente capacidad. Intente nuevamente.");
             return;
         }
 
-        // Lógica para seleccionar las fechas de reserva, check-in y check-out
+        // Lï¿½gica para seleccionar las fechas de reserva, check-in y check-out
         System.out.print("Ingrese la fecha de reserva: ");
         String fechaReserva = scanner.nextLine();
 
@@ -126,17 +155,17 @@ public class HotelReservationCLI {
         String fechaCheckOut = scanner.nextLine();
 
 
-        // Lógica para seleccionar habitación, fecha de reserva, etc.
+        // Lï¿½gica para seleccionar habitaciï¿½n, fecha de reserva, etc.
 
         Reserva reserva = new Reserva(cliente, hotel, habitacion, fechaReserva, fechaCheckIn, fechaCheckOut); // Crear objeto Reserva con los datos necesarios
         SistemaReservas.realizarReserva(reserva);
 
-        System.out.println("Reserva realizada con éxito.");
+        System.out.println("Reserva realizada con ï¿½xito.");
     }
 
     
     private void gestionarConsultas() {
-        // Implementa la lógica para gestionar consultas y reclamos
+        // Implementa la lï¿½gica para gestionar consultas y reclamos
         // Puedes permitir al usuario enviar una consulta y mostrar la respuesta correspondiente
     }
 
