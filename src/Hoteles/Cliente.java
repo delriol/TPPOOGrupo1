@@ -138,34 +138,14 @@ public class Cliente {
         this.cuentaMercadoPago = cuentaMercadoPago;
     }
 
-	public void registrar(String nombre, String apellido, String domicilio, String DNI, String fechaNacimiento,
-                      String datosTarjetaCredito, String email, String contrasena, String cuentaBancaria,
-                      String cuentaMercadoPago) {
-    	this.nombre = nombre;
-    	this.apellido = apellido;
-    	this.domicilio = domicilio;
-    	this.DNI = DNI;
-    	this.fechaNacimiento = fechaNacimiento;
-    	this.datosTarjetaCredito = datosTarjetaCredito;
-    	this.email = email;
-    	this.contrasena = contrasena;
-    	this.cuentaBancaria = cuentaBancaria;
-    	this.cuentaMercadoPago = cuentaMercadoPago;
-	}
-	public void iniciarSesion(String email, String contrasena){
-		if (this.email.equals(email) && this.contrasena.equals(contrasena)) {
-			System.out.println("Inicio de sesión exitoso.");
-		} else {
-			System.out.println("Error: Email o contraseña incorrectos.");
-		}
-	}
+	
 
-	public void reservar() {}
+	
 
-	public static Cliente registrar2(Scanner scanner){
+	public static Cliente registrar(Scanner scanner){
 
 		String nombre, apellido, domicilio, DNI, fechaNacimiento, datosTarjetaCredito,
-		email, contrasena, _cuentaBancaria, cuentaMercadoPago;
+		email, contrasena, cuentaBancaria, cuentaMercadoPago;
 		Cliente nuevo_cliente;
 
 		System.out.println("Ingrese su Nombre:");
@@ -185,12 +165,16 @@ public class Cliente {
 		System.out.println("Ingrese su contrasena:");
 		contrasena = scanner.nextLine();
 		System.out.println("Ingrese su cuentaBancaria:");
-		_cuentaBancaria = scanner.nextLine();
+		cuentaBancaria = scanner.nextLine();
 		System.out.println("Ingrese su cuentaMercadoPago:");
 		cuentaMercadoPago = scanner.nextLine();
 
 		nuevo_cliente = new Cliente(nombre, apellido, domicilio,
 		DNI, fechaNacimiento, datosTarjetaCredito, email, contrasena);
+		
+		SistemaReservas sistema = SistemaReservas.getSistemaReservas();
+    	sistema.agregarCliente(nuevo_cliente);
+    	
 
 		System.out.print("\033c");
 		System.out.println("Usuario registrado exitosamente.\n");
@@ -198,16 +182,19 @@ public class Cliente {
 
 		return nuevo_cliente;
 	}
-	public static Cliente iniciarSesion2(Scanner scanner, ArrayList<Cliente> baseclientes){
+	public static Cliente iniciarSesion(Scanner scanner, ArrayList<Cliente> baseclientes){
 		Cliente cliente = null;
 		String _email, _contrasena;
+
 		System.out.println("Ingrese su email:");
 		_email = scanner.nextLine();
 		System.out.println("Ingrese su contraseña:");
 		_contrasena = scanner.nextLine();
+
 		for (Cliente i : baseclientes) {
 			if (i.getEmail().equals(_email) && i.getContrasena().equals(_contrasena)){
 				cliente = i;
+				break;
 			}
 		}
 		System.out.print("\033c");
@@ -217,5 +204,9 @@ public class Cliente {
 			System.out.println("Email o contraseña incorrectos.\n");
 		}
 		return cliente;
+	}
+
+	public void reservar() {
+
 	}
 }

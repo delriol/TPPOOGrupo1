@@ -7,16 +7,34 @@ public class SistemaReservas {
     private static List<Hotel> hoteles;
     private static List<Cliente> clientes;
     private static List<Reserva> reservas;
+    private static SistemaReservas sistemaReservas;
 
     public SistemaReservas() {
         hoteles = new ArrayList<>();
         clientes = new ArrayList<>();
         reservas = new ArrayList<>();
+        
 
         // Inicializar la lista de hoteles con datos de prueba
-        hoteles.add(new Hotel("Hotel A", "Ubicación A", 4, 100));
-        hoteles.add(new Hotel("Hotel B", "Ubicación B", 3, 80));
-        hoteles.add(new Hotel("Hotel C", "Ubicación C", 5, 120));
+        Hotel hotelA = new Hotel("Hotel A", "Ubicacion A", 4, 100);
+        Hotel hotelB = new Hotel("Hotel B", "Ubicacion B", 3, 80);
+        Hotel hotelC = new Hotel("Hotel C", "Ubicacion C", 5, 120);
+        //hoteles.add(new Hotel("Hotel A", "Ubicaciï¿½n A", 4, 100));
+        //hoteles.add(new Hotel("Hotel B", "Ubicaciï¿½n B", 3, 80));
+        //hoteles.add(new Hotel("Hotel C", "Ubicaciï¿½n C", 5, 120));
+        hoteles.add(hotelA);
+        hoteles.add(hotelB);
+        hoteles.add(hotelC);
+
+        hotelA.agregarHabitacion(new Habitacion(1,2));
+        hotelA.agregarHabitacion(new Habitacion(2, 2));
+    }
+    
+    public static SistemaReservas getSistemaReservas() {
+        if (sistemaReservas == null) {
+            sistemaReservas = new SistemaReservas();
+        }
+        return sistemaReservas;
     }
 
     public void agregarHotel(Hotel hotel) {
@@ -61,6 +79,7 @@ public class SistemaReservas {
         return null; // Si no se encuentra el hotel
     }
 
-    // Resto de los métodos de la clase SistemaReservas
+    
+    // Resto de los mï¿½todos de la clase SistemaReservas
     // ...
 }

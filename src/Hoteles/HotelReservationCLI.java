@@ -11,11 +11,16 @@ public class HotelReservationCLI {
         scanner = new Scanner(System.in);
     }
 
+    
+    
+
     public void start() {
         boolean exit = false;
         Cliente sesion_actual = null;
         int opcion;
         ArrayList<Cliente> baseclientes = new ArrayList<>();
+        
+        
         System.out.print("\033c");
         while (!exit) {
             if (sesion_actual == null){
@@ -29,10 +34,16 @@ public class HotelReservationCLI {
                 scanner.nextLine(); // Limpiar el buffer
                 switch (opcion) {
                     case 1:
-                        sesion_actual = Cliente.iniciarSesion2(scanner,baseclientes);
+                        sesion_actual = Cliente.iniciarSesion(scanner,baseclientes);
                         break;
                     case 2:
-                    baseclientes.add(Cliente.registrar2(scanner));
+                        Cliente clienteRegistrado = Cliente.registrar(scanner);
+                        if (clienteRegistrado != null) {
+                            baseclientes.add(clienteRegistrado);
+                            sesion_actual = clienteRegistrado;
+                        }
+        
+                    
                         break;
                     case 0:
                         exit = true;
@@ -77,12 +88,19 @@ public class HotelReservationCLI {
         System.out.println("Gracias por utilizar Hotelaltoque. �Hasta luego!");
     }
     
+
+    
+    
+
+    
+    
     public void buscarHoteles(Scanner scanner) {
         System.out.println("B�squeda de hoteles");
         System.out.print("Ingrese la categor�a m�nima: ");
         int categoriaMinima = scanner.nextInt();
         System.out.print("Ingrese la capacidad m�nima: ");
         int capacidadMinima = scanner.nextInt();
+        scanner.nextLine();
 
         List<Hotel> hotelesEncontrados = SistemaReservas.buscarHoteles(categoriaMinima, capacidadMinima);
 
@@ -116,6 +134,13 @@ public class HotelReservationCLI {
         } 
         
      // L�gica para seleccionar una habitaci�n
+        System.out.println("Habitaciones disponibles en " + hotel.getNombre() + ":");
+        List<Habitacion> habitaciones = hotel.getHabitaciones();
+        for (Habitacion habitacion : habitaciones) {
+            if (habitacion.isDisponibilidad()) {
+                System.out.println("Número de habitación: " + habitacion.getNumeroHabitacion() + " - Capacidad: " + habitacion.getCapacidad());
+            }
+        }
         
         System.out.print("Ingrese el n�mero de habitaci�n: ");
         int numeroHabitacion = scanner.nextInt();
