@@ -6,8 +6,9 @@ public class Habitacion {
     private boolean disponibilidad;
 
     // Constructor
-    public Habitacion(int numeroHabitacion) {
+    public Habitacion(int numeroHabitacion, int capacidad) {
         this.numeroHabitacion = numeroHabitacion;
+		this.capacidad = capacidad;
         this.disponibilidad = true;
     }
 
@@ -35,7 +36,7 @@ public class Habitacion {
 		this.disponibilidad = disponibilidad;
 	}
 
-	// Métodos adicionales
+	// Mï¿½todos adicionales
     public void marcarComoNoDisponible() {
         disponibilidad = false;
     }

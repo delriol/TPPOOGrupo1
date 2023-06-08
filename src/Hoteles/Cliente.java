@@ -1,4 +1,6 @@
 package Hoteles;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Cliente {
     private String nombre;
@@ -136,27 +138,75 @@ public class Cliente {
         this.cuentaMercadoPago = cuentaMercadoPago;
     }
 
-	public void registrar(String nombre, String apellido, String domicilio, String DNI, String fechaNacimiento,
-                      String datosTarjetaCredito, String email, String contrasena, String cuentaBancaria,
-                      String cuentaMercadoPago) {
-    	this.nombre = nombre;
-    	this.apellido = apellido;
-    	this.domicilio = domicilio;
-    	this.DNI = DNI;
-    	this.fechaNacimiento = fechaNacimiento;
-    	this.datosTarjetaCredito = datosTarjetaCredito;
-    	this.email = email;
-    	this.contrasena = contrasena;
-    	this.cuentaBancaria = cuentaBancaria;
-    	this.cuentaMercadoPago = cuentaMercadoPago;
+	
+
+	
+
+	public static Cliente registrar(Scanner scanner){
+
+		String nombre, apellido, domicilio, DNI, fechaNacimiento, datosTarjetaCredito,
+		email, contrasena, cuentaBancaria, cuentaMercadoPago;
+		Cliente nuevo_cliente;
+
+		System.out.println("Ingrese su Nombre:");
+		nombre = scanner.nextLine();
+		System.out.println("Ingrese su apellido:");
+		apellido = scanner.nextLine();
+		System.out.println("Ingrese su domicilio:");
+		domicilio = scanner.nextLine();
+		System.out.println("Ingrese su DNI:");
+		DNI = scanner.nextLine();
+		System.out.println("Ingrese su fecha de nacimiento:");
+		fechaNacimiento = scanner.nextLine();
+		System.out.println("Ingrese sus datos de Tarjeta de Credito:");
+		datosTarjetaCredito = scanner.nextLine();
+		System.out.println("Ingrese su email:");
+		email = scanner.nextLine();
+		System.out.println("Ingrese su contrasena:");
+		contrasena = scanner.nextLine();
+		System.out.println("Ingrese su cuentaBancaria:");
+		cuentaBancaria = scanner.nextLine();
+		System.out.println("Ingrese su cuentaMercadoPago:");
+		cuentaMercadoPago = scanner.nextLine();
+
+		nuevo_cliente = new Cliente(nombre, apellido, domicilio,
+		DNI, fechaNacimiento, datosTarjetaCredito, email, contrasena);
+		
+		SistemaReservas sistema = SistemaReservas.getSistemaReservas();
+    	sistema.agregarCliente(nuevo_cliente);
+    	
+
+		System.out.print("\033c");
+		System.out.println("Usuario registrado exitosamente.\n");
+
+
+		return nuevo_cliente;
 	}
-	public void iniciarSesion(String main, String contrasena){
-		if (this.email.equals(email) && this.contrasena.equals(contrasena)) {
-			System.out.println("Inicio de sesión exitoso.");
-		} else {
-			System.out.println("Error: Email o contraseña incorrectos.");
+	public static Cliente iniciarSesion(Scanner scanner, ArrayList<Cliente> baseclientes){
+		Cliente cliente = null;
+		String _email, _contrasena;
+
+		System.out.println("Ingrese su email:");
+		_email = scanner.nextLine();
+		System.out.println("Ingrese su contraseña:");
+		_contrasena = scanner.nextLine();
+
+		for (Cliente i : baseclientes) {
+			if (i.getEmail().equals(_email) && i.getContrasena().equals(_contrasena)){
+				cliente = i;
+				break;
+			}
 		}
+		System.out.print("\033c");
+		if (cliente != null){
+			System.out.println("Inicio de sesión exitoso.\n");
+		}else{
+			System.out.println("Email o contraseña incorrectos.\n");
+		}
+		return cliente;
 	}
 
-	public void reservar() {}
+	public void reservar() {
+
+	}
 }
