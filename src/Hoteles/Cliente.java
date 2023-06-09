@@ -1,4 +1,3 @@
-
 package Hoteles;
 
 import java.util.Scanner;
@@ -16,11 +15,8 @@ public class Cliente {
     private String cuentaBancaria;
     private String cuentaMercadoPago;
 
-    // Constructor
-    public Cliente() {}
-
     public Cliente(String nombre, String apellido, String domicilio, String DNI, String fechaNacimiento,
-                   String datosTarjetaCredito, String email, String contrasena) {
+                   String datosTarjetaCredito, String email, String contrasena, String cuentaBancaria, String cuentaMercadoPago) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.domicilio = domicilio;
@@ -147,7 +143,7 @@ public class Cliente {
         cuentaMercadoPago = scanner.nextLine();
 
         nuevo_cliente = new Cliente(nombre, apellido, domicilio,
-                DNI, fechaNacimiento, datosTarjetaCredito, email, contrasena);
+                DNI, fechaNacimiento, datosTarjetaCredito, email, contrasena, cuentaBancaria, cuentaMercadoPago);
 
         SistemaReservas sistema = SistemaReservas.getSistemaReservas();
         sistema.agregarCliente(nuevo_cliente);
@@ -181,9 +177,4 @@ public class Cliente {
         }
         return cliente;
     }
-
-    public void reservar() {
-        // Implementa la lógica para realizar una reserva
-    }
 }
-

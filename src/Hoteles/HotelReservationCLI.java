@@ -57,7 +57,7 @@ public class HotelReservationCLI {
                 System.out.print("Opción: ");
 
                 opcion = scanner.nextInt();
-                scanner.nextLine(); // Limpiar el buffer
+                scanner.nextLine();
 
                 switch (opcion) {
                     case 1:
