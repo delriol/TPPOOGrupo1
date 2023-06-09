@@ -188,6 +188,8 @@ public class HotelReservationCLI {
         System.out.println(cliente.getNombre() + " su reserva en el hotel " + hotel.getNombre() + " ,en la habitacion " + habitacion.getNumeroHabitacion() + " ,para la fecha " + fechaReserva + " ,con el metodo de pago: " + metodoPago + " . Recuerde que su fecha para checkin es : " + fechaCheckIn + " y su fecha para el checkout es: " + fechaCheckOut);
         System.out.println("---------------------------------------------");
         System.out.println("Reserva realizada con éxito.");
+        Encuesta encuestaNueva = new Encuesta();
+        encuestaNueva.hacerEncuesta(scanner);
     }
 
     public void gestionarConsultas(List<String> consultasPendientes) {
