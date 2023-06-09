@@ -158,6 +158,8 @@ public class HotelReservationCLI {
             System.out.println("La habitación seleccionada no tiene suficiente capacidad. Intente nuevamente.");
             return;
         }
+        
+
 
         // Lógica para seleccionar las fechas de reserva, check-in y check-out
         System.out.print("Ingrese la fecha de reserva: ");

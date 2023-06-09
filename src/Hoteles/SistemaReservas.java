@@ -8,12 +8,14 @@ public class SistemaReservas {
     private static List<Hotel> hoteles;
     private static List<Cliente> clientes;
     private static List<Reserva> reservas;
+    private static List<Paquete> paquetes;
     private static SistemaReservas sistemaReservas;
 
     public SistemaReservas() {
         hoteles = new ArrayList<>();
         clientes = new ArrayList<>();
         reservas = new ArrayList<>();
+        paquetes = new ArrayList<>();
         
 
         // Inicializar la lista de hoteles con datos de prueba
@@ -29,6 +31,21 @@ public class SistemaReservas {
 
         hotelA.agregarHabitacion(new Habitacion(1,2));
         hotelA.agregarHabitacion(new Habitacion(2, 2));
+        hotelA.agregarHabitacion(new Habitacion(3,4));
+        hotelA.agregarHabitacion(new Habitacion(4, 1));
+        hotelA.agregarHabitacion(new Habitacion(5,2));
+        hotelB.agregarHabitacion(new Habitacion(2, 2));
+        hotelB.agregarHabitacion(new Habitacion(1,2));
+        hotelB.agregarHabitacion(new Habitacion(2, 2));
+        hotelC.agregarHabitacion(new Habitacion(3,4));
+        hotelC.agregarHabitacion(new Habitacion(4, 1));
+        hotelC.agregarHabitacion(new Habitacion(5,2));
+
+        Paquete paquete1 = new Paquete("dayTour", "visita guiada por la ciudad", 2.500);
+        Paquete paquete2 = new Paquete("museo", "visita a un museo importante de la ciudad", 4.500);
+
+        paquetes.add(paquete1);
+        paquetes.add( paquete2);
     }
     
     public static SistemaReservas getSistemaReservas() {
@@ -80,6 +97,14 @@ public class SistemaReservas {
         return null; // Si no se encuentra el hotel
     }
 
+    public static Paquete buscarPaquete(String nombrePaquete) {
+        for(Paquete paquete : paquetes) {
+            if(paquete.getNombre().equalsIgnoreCase(nombrePaquete)){
+                return paquete;
+            }
+        }
+        return null;
+    }
     
     // Resto de los m�todos de la clase SistemaReservas
     // ...
