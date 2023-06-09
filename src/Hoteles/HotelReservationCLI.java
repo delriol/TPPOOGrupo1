@@ -184,6 +184,9 @@ public class HotelReservationCLI {
         Reserva reserva = new Reserva(cliente, hotel, habitacion, fechaReserva, fechaCheckIn, fechaCheckOut, metodoPago);
         SistemaReservas.realizarReserva(reserva);
 
+        System.out.println("---------------------------------------------");
+        System.out.println(cliente.getNombre() + " su reserva en el hotel " + hotel.getNombre() + " ,en la habitacion " + habitacion.getNumeroHabitacion() + " ,para la fecha " + fechaReserva + " ,con el metodo de pago: " + metodoPago + " . Recuerde que su fecha para checkin es : " + fechaCheckIn + " y su fecha para el checkout es: " + fechaCheckOut);
+        System.out.println("---------------------------------------------");
         System.out.println("Reserva realizada con éxito.");
     }
 
