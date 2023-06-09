@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package Hoteles;
 
 public class Paquete {
@@ -36,4 +37,44 @@ public class Paquete {
 		this.precio = precio;
 	}
     
+=======
+package Hoteles;
+
+public class Paquete {
+    private String nombre;
+    private String descripcion;
+    private double precio;
+
+    // Constructor
+    public Paquete(String nombre, String descripcion, double precio) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+    }
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+    
+>>>>>>> aa4c975 (se agrego la eleccion de metodo de pago)
 }
